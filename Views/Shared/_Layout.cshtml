@@ -1,0 +1,108 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - BookStore</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/BookStore.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha384-DyZ88mC6Up2uqS4h/Kr37p8zqf0veU8fMhAxPDRjS7pG3z5XJpOpr5nZf5L5H2C3" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha384-DyZ88mC6Up2uqS4h/Kr37p8zqf0veU8fMhAxPDRjS7pG3z5XJpOpr5nZf5L5H2C3" crossorigin="anonymous">
+    <style>
+        /* Custom Styles */
+        body {
+            background-color: #f8f9fa; /* Light gray background */
+            color: #333; /* Black text */
+        }
+
+        .navbar {
+            background-color: #FF69B4; /* Pink navbar */
+            border-bottom: 1px solid #dee2e6; /* Light border at bottom */
+        }
+
+        .navbar-brand {
+            color: white; /* White text */
+            font-weight: bold; /* Bold font */
+            font-size: 1.5rem; /* Larger font size */
+        }
+
+        .navbar-nav {
+            flex-direction: row; /* Align navbar items horizontally */
+        }
+
+        .nav-link {
+            color: white !important; /* White text for links */
+            margin: 0 10px; /* Spacing between links */
+        }
+
+            .nav-link:hover {
+                color: #FFE4E1 !important; /* Light pink on hover */
+            }
+
+        .container {
+            margin-top: 20px; /* Top margin for content */
+        }
+
+        main {
+            background-color: white; /* White background for main content */
+            padding: 20px; /* Padding inside main content */
+            border: 1px solid #dee2e6; /* Light border */
+            border-radius: 5px; /* Rounded corners */
+            margin-bottom: 20px; /* Bottom margin */
+            color: #333; /* Black text */
+        }
+ /* Center-align footer text */
+            */ /* Align to the left */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-md navbar-light ">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">BookStore</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Genres" asp-action="Index">Genres</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Authors" asp-action="Index">Authors</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Publishers" asp-action="Index">Publishers</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Books" asp-action="Index">Books</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+
+    <footer class="footer text-muted">
+        <div class="container">
+            <p>&copy; 2024 - BookStore @DateTime.Now  <a asp-area="" asp-controller="Home" asp-action="Privacy" class="text-white">Privacy</a></p>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

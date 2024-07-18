@@ -1,0 +1,63 @@
+﻿@model IEnumerable<BookStore.Models.Domain.Publisher>
+
+@{
+    ViewData["Title"] = "Publishers List";
+    Layout = "_Layout";
+}
+
+<!-- Ensure Font Awesome CSS is included -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha384-DyZ88mC6Up2uqS4h/Kr37p8zqf0veU8fMhAxPDRjS7pG3z5XJpOpr5nZf5L5H2C3" crossorigin="anonymous">
+
+<h1>Publishers List</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">
+        <i class="fas fa-plus-circle"></i>  New Publisher
+    </a>
+</p>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.PublisherName)</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var publisher in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => publisher.PublisherName)</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@publisher.Id" class="btn btn-primary btn-sm">
+                        <i class="fas fa-edit"></i> Edit
+                    </a>
+
+                    <form asp-action="Delete" asp-route-id="@publisher.Id" method="post" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this publisher?');">
+                        <button type="submit" class="btn btn-danger btn-sm">
+                            <i class="fas fa-trash-alt"></i> Delete
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>

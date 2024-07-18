@@ -1,0 +1,63 @@
+﻿@model IEnumerable<BookStore.Models.Domain.Book>
+
+@{
+    ViewData["Title"] = "Book List";
+    Layout = "_Layout";
+}
+
+<h2 class="text-center">Book List</h2>
+<div class="text-right mb-3">
+    <a class="btn btn-primary" href="/Books/Create">
+        <i class="fa fa-plus"></i> Add New Book
+    </a>
+</div>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        <i class="fa fa-check-circle"></i> @TempData["SuccessMessage"]
+    </div>
+}
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        <i class="fa fa-exclamation-circle"></i> @TempData["ErrorMessage"]
+    </div>
+}
+
+<table class="table table-bordered table-striped table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th>Title</th>
+            <th>Genre</th>
+            <th>ISBN</th>
+            <th>Total Pages</th>
+            <th>Author</th>
+            <th>Publisher</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var book in Model)
+        {
+            <tr>
+                <td>@book.Title</td>
+                <td>@book.GenreName</td> <!-- Assuming Genre is a navigation property -->
+                <td>@book.Isbn</td>
+                <td>@book.TotalPages</td>
+                <td>@book.AuthorName</td> <!-- Assuming Author is a navigation property -->
+                <td>@book.PublisherName</td> <!-- Assuming Publisher is a navigation property -->
+                <td>
+                    <a asp-action="Edit" asp-route-id="@book.Id" class="btn btn-warning btn-sm">
+                        <i class="fa fa-edit"></i> Edit
+                    </a>
+                    <form asp-action="Delete" asp-route-id="@book.Id" method="post" style="display:inline;">
+                        <button type="submit" class="btn btn-danger btn-sm">
+                            <i class="fa fa-trash"></i> Delete
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

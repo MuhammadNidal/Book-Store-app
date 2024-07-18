@@ -1,0 +1,35 @@
+﻿@model BookStore.Models.Domain.Publisher
+
+@{
+    ViewData["Title"] = "Edit Publisher";
+    Layout = "_Layout";
+}
+
+<h1>Edit Publisher</h1>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+<form asp-action="Edit">
+    <div class="form-group">
+        <input type="hidden" asp-for="Id" />
+        <label asp-for="PublisherName" class="control-label"></label>
+        <input asp-for="PublisherName" class="form-control" />
+        <span asp-validation-for="PublisherName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Save</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+    </div>
+</form>

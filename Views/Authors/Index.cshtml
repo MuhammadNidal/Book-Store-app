@@ -1,0 +1,50 @@
+﻿@model IEnumerable<BookStore.Models.Domain.Author>
+
+@{
+    ViewData["Title"] = "Authors List";
+    Layout = "_Layout";
+}
+
+<h1>Authors List</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create New Author</a>
+</p>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.AuthorName)</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var author in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => author.AuthorName)</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@author.Id" class="btn btn-primary btn-sm">Edit</a>
+                    
+                    <form asp-action="Delete" asp-route-id="@author.Id" method="post" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this author?');">
+                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
